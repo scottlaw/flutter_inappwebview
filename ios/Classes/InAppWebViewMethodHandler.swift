@@ -249,6 +249,10 @@ public class InAppWebViewMethodHandler: FlutterMethodCallDelegate {
                 webView?.clearCache()
                 result(true)
                 break
+            case "clearResourceCache":
+                webView?.clearResourceCache()
+                result(true)
+                break
             case "scrollTo":
                 let x = arguments!["x"] as! Int
                 let y = arguments!["y"] as! Int

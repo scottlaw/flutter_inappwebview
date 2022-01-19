@@ -567,6 +567,10 @@ final public class InAppWebView extends InputAwareWebView {
     WebStorage.getInstance().deleteAllData();
   }
 
+  public void clearResourceCache() {
+    clearCache(true);
+  }
+
   public void takeScreenshot(final @Nullable Map<String, Object> screenshotConfiguration, final MethodChannel.Result result) {
     final float pixelDensity = Util.getPixelDensity(getContext());
     

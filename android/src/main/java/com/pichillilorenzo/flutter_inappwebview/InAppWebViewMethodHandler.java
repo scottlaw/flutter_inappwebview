@@ -245,6 +245,11 @@ public class InAppWebViewMethodHandler implements MethodChannel.MethodCallHandle
           webView.clearAllCache();
         result.success(true);
         break;
+      case "clearResourceCache":
+        if (webView != null)
+          webView.clearResourceCache();
+        result.success(true);
+        break;
       case "clearSslPreferences":
         if (webView != null)
           webView.clearSslPreferences();

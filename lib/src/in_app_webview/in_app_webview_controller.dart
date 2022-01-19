@@ -1,32 +1,30 @@
-import 'dart:io';
 import 'dart:async';
 import 'dart:collection';
-import 'dart:typed_data';
 import 'dart:convert';
 import 'dart:core';
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-import 'android/in_app_webview_controller.dart';
-import 'ios/in_app_webview_controller.dart';
-
+import '../android/webview_feature.dart';
 import '../context_menu.dart';
-import '../types.dart';
 import '../in_app_browser/in_app_browser.dart';
-import '../web_storage/web_storage.dart';
+import '../types.dart';
 import '../util.dart';
 import '../web_message/web_message_channel.dart';
 import '../web_message/web_message_listener.dart';
-import '../android/webview_feature.dart';
-
+import '../web_storage/web_storage.dart';
+import '_static_channel.dart';
+import 'android/in_app_webview_controller.dart';
 import 'headless_in_app_webview.dart';
 import 'in_app_webview.dart';
 import 'in_app_webview_options.dart';
+import 'ios/in_app_webview_controller.dart';
 import 'webview.dart';
-import '_static_channel.dart';
 
 ///List of forbidden names for JavaScript handlers.
 // ignore: non_constant_identifier_names
@@ -1572,6 +1570,12 @@ class InAppWebViewController {
         (await _channel.invokeMethod('getCopyBackForwardList', args))
             ?.cast<String, dynamic>();
     return WebHistory.fromMap(result);
+  }
+
+  ///Clears all the webview's resource cache.
+  Future<void> clearResourceCache() async {
+    Map<String, dynamic> args = <String, dynamic>{};
+    await _channel.invokeMethod('clearResourceCache', args);
   }
 
   ///Clears all the webview's cache.
